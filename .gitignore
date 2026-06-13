@@ -1,0 +1,11 @@
+uploads/
+*.log
+*.cache
+.cache/
+node_modules/
+npm-debug.log
+.DS_Store
+plugins/*.zip
+backup/
+*.bak
+.env

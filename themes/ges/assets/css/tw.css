@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Aspekta";
+  src:
+          url("../fonts/AspektaVF.woff2") format("woff2"),
+          url("../fonts/AspektaVF.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@source "../../*.php" "../../**/*.php";
+
+
+@theme {
+  --spacing-1: 16px;
+  --spacing-2: 20px;
+  --spacing-3: 25px;
+  --spacing-4: 31px;
+  --spacing-5: 39px;
+  --spacing-6: 49px;
+  --spacing-7: 61px;
+  --spacing-8: 76px;
+  --color-negro:hsla(240, 26%, 14%, 1);
+  --color-blanco:hsla(0, 0%, 100%, 1);
+  --color-amarillo:hsla(57, 100%, 48%, 1);
+  --color-verde:hsla(137, 66%, 42%, 1);
+  --color-azul-electrico:hsla(218, 100%, 50%, 1);
+  --color-fucsia:hsla(300, 100%, 70%, 1);
+  --color-azulnavy:hsla(229, 76%, 31%, 1);
+  --color-morado:hsla(248, 94%, 58%, 1);
+  --color-verde-menta:hsla(100, 47%, 73%, 1);
+  --font-aspekta:"Aspekta", sans-serif;
+}
+
+@layer base {
+  body{
+    font-family: var(--font-aspekta);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ges/carbon-mu",
+  "description": "Carbon Fields as MU plugin",
+  "type": "wordpress-muplugin",
+  "require": {
+    "htmlburger/carbon-fields": "^3.6"
+  }
+}
