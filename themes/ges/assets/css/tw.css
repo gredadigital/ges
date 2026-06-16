@@ -33,6 +33,26 @@
   --color-morado:hsla(248, 94%, 58%, 1);
   --color-verde-menta:hsla(100, 47%, 73%, 1);
   --font-aspekta:"Aspekta", sans-serif;
+  --font-size-mobile-h1:40px;
+  --font-size-mobile-h2:30px;
+  --font-size-mobile-h3:20px;
+  --font-size-mobile-p:16px;
+  --font-size-mobile-button:16px;
+  --font-size-mobile-p2:14px;
+  --font-size-mobile-p3:14px;
+  --font-size-tablet-h1:36px;
+  --font-size-tablet-h2:30px;
+  --font-size-tablet-h3:26px;
+  --font-size-tablet-p:20px;
+  --font-size-tablet-button:20px;
+  --font-size-tablet-small:16px;
+  --font-size-h1:160px;
+  --font-size-h2:120px;
+  --font-size-h3:100px;
+  --font-size-p:25px;
+  --font-size-h4:32px;
+  --font-size-boton:20px;
+  --font-size-negrilla:32px;
 }
 
 @layer base {
