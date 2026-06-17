@@ -1,25 +1,106 @@
 <?php
 /**
  * Template Name: Servicios
- *
- * @package ges
  */
 
 get_header();
+
+$servicios = carbon_get_the_post_meta( 'ges_servicios_paginas' );
+
 ?>
 
-<main class="container mx-auto py-16">
-    <?php
-    if ( have_posts() ) :
-        while ( have_posts() ) :
-            the_post();
+    <main class="services-page">
+        <section class="services-page__header">
+            <div class="container">
+                <header class="section-header">
+                    <h1>Servicios</h1>
+                </header>
+            </div>
+        </section>
+        <?php if ( ! empty( $servicios ) ) : ?>
+            <section class="services-list">
+                <div class="container">
+                    <?php foreach ( $servicios as $servicio ) : ?>
+                        <?php
+                        $page_id = $servicio['id'];
+                        $imagen = carbon_get_post_meta(
+                                $page_id,
+                                'ges_service_cover'
+                        );
+                        $extracto = carbon_get_post_meta(
+                                $page_id,
+                                'ges_service_excerpt'
+                        );
+                        $tagline = carbon_get_post_meta(
+                                $page_id,
+                                'ges_service_tagline'
+                        );
+                        ?>
+                        <article class="service-card">
+                            <a
+                                    href="<?php echo esc_url( get_permalink( $page_id ) ); ?>"
+                                    class="service-card__link"
+                            >
+                                <?php if ( $imagen ) : ?>
+                                    <figure class="service-card__image">
+                                        <?php
+                                        echo wp_get_attachment_image(
+                                                $imagen,
+                                                'large',
+                                                false,
+                                                [
+                                                        'class' => 'service-card__img',
+                                                        'alt'   => get_the_title( $page_id ),
+                                                ]
+                                        );
+                                        ?>
+                                    </figure>
+                                <?php endif; ?>
+                                <div class="service-card__overlay">
+                                    <div class="service-card__content">
+                                        <h2 class="service-card__title">
+                                            <?php
+                                            echo esc_html(
+                                                    get_the_title( $page_id )
+                                            );
+                                            ?>
+                                        </h2>
+                                        <?php if ( $extracto ) : ?>
+                                            <p class="service-card__excerpt">
+                                                <?php
+                                                echo esc_html(
+                                                        $extracto
+                                                );
+                                                ?>
+                                            </p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="service-card__arrow">
+                                        →
+                                    </div>
+                                </div>
+                            </a>
+                            <?php if ( $tagline ) : ?>
+                                <div class="service-card__footer">
+                                <span>
+                                    <?php
+                                    echo esc_html(
+                                            $tagline
+                                    );
+                                    ?>
+                                </span>
+                                </div>
+                            <?php endif; ?>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        <?php endif; ?>
+        <section class="services-decoration">
+            <div class="services-decoration__circle services-decoration__circle--1"></div>
+            <div class="services-decoration__circle services-decoration__circle--2"></div>
+            <div class="services-decoration__circle services-decoration__circle--3"></div>
+        </section>
+    </main>
 
-            the_content();
-
-        endwhile;
-    endif;
-    ?>
-</main>
-
-<?php
-get_footer();
+<?php get_footer(); ?>
