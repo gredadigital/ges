@@ -1,15 +1,17 @@
 <?php
-/**
- * Carbon Fields: Ejemplo de Container para la página Home
- */
 
-use Carbon_Fields\Container;
-use Carbon_Fields\Field;
-
-// Registramos los campos cuando Carbon Fields ya está cargado.
 add_action('carbon_fields_register_fields', function () {
 
-    foreach (glob(__DIR__ . '/fields/*.php') as $file) {
+    $fields_dir = __DIR__ . '/fields';
+
+    require_once $fields_dir . '/service-fields.php';
+
+    foreach (glob($fields_dir . '/*.php') as $file) {
+
+        if (str_contains($file, 'service-fields.php')) {
+            continue;
+        }
+
         require_once $file;
     }
 
