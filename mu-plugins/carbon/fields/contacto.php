@@ -35,12 +35,13 @@ Container::make( 'post_meta', __( 'Contenido Contacto', 'ges' ) )
     ->add_tab( __( 'Ubicación principal', 'ges' ), [
 
         Field::make(
-            'url',
-            'ges_contact_maps_url',
-            __( 'URL de Google Maps', 'ges' )
+            'textarea',
+            'ges_contact_map_embed',
+            __( 'Código Embed de Google Maps', 'ges' )
         )
+            ->set_rows( 6 )
             ->set_help_text(
-                __( 'Pegue la URL pública de Google Maps.', 'ges' )
+                __( 'Pegue el iframe generado por Google Maps (Compartir → Insertar un mapa).', 'ges' )
             ),
 
         Field::make(
@@ -75,7 +76,7 @@ Container::make( 'post_meta', __( 'Contenido Contacto', 'ges' ) )
                 ),
 
                 Field::make(
-                    'url',
+                    'text',
                     'url',
                     __( 'Enlace', 'ges' )
                 ),
@@ -119,7 +120,7 @@ Container::make( 'post_meta', __( 'Contenido Contacto', 'ges' ) )
                 ),
 
                 Field::make(
-                    'email',
+                    'text',
                     'email',
                     __( 'Correo electrónico', 'ges' )
                 ),

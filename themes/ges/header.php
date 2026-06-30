@@ -13,43 +13,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#ffffff">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
+
     <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
 <div id="page" class="min-h-screen flex flex-col">
-    <header class="w-full">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between py-6">
-                <a
-                    href="<?php echo esc_url(home_url('/')); ?>"
-                    class="block"
-                    aria-label="<?php bloginfo('name'); ?>"
-                >
-                    <?php if (has_custom_logo()) : ?>
-                        <?php the_custom_logo(); ?>
-                    <?php else : ?>
-                        <span class="text-xl font-bold">
-                            <?php bloginfo('name'); ?>
-                        </span>
-                    <?php endif; ?>
-                </a>
-                <nav
-                    aria-label="<?php esc_attr_e('Menú principal', 'ges'); ?>"
-                >
-                    <?php
-                    wp_nav_menu([
+
+    <header class="site-header">
+
+        <div class="header-bar">
+
+            <div class="container mx-auto p-1">
+
+                <div class="flex items-center justify-between">
+
+                    <a
+                            href="<?php echo esc_url(home_url('/')); ?>"
+                            class="logo-ges"
+                            aria-label="<?php bloginfo('name'); ?>"
+                    ></a>
+
+                    <button
+                            id="menu-toggle"
+                            class="menu-toggle"
+                            type="button"
+                            aria-label="<?php esc_attr_e('Abrir menú', 'ges'); ?>"
+                            aria-controls="site-navigation"
+                            aria-expanded="false"
+                    >
+                        <span>Abrir menú</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+                id="site-navigation"
+                class="site-navigation"
+                aria-hidden="true"
+        >
+
+            <div class="header-bar">
+
+                <div class="container mx-auto p-1">
+
+                    <div class="flex items-center justify-between">
+
+                        <a
+                                href="<?php echo esc_url(home_url('/')); ?>"
+                                class="logo-ges"
+                                aria-label="<?php bloginfo('name'); ?>"
+                        ></a>
+
+                        <button
+                                id="menu-close"
+                                class="menu-close"
+                                type="button"
+                                aria-label="<?php esc_attr_e('Cerrar menú', 'ges'); ?>"
+                        >
+                            <span>Cerrar menú</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container mx-auto p-4">
+
+                <?php
+                wp_nav_menu([
                         'theme_location' => 'header_menu',
                         'container'      => false,
-                        'menu_class'     => 'flex items-center gap-8',
+                        'menu_class'     => 'menu-principal',
                         'fallback_cb'    => false,
-                        'depth'          => 2,
-                    ]);
-                    ?>
-                </nav>
+                        'depth'          => 1,
+                ]);
+                ?>
+
             </div>
+
         </div>
+
     </header>
+
     <main id="primary" class="flex-1">

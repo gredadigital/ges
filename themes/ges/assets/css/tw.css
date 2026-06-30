@@ -23,6 +23,7 @@
   --spacing-6: 49px;
   --spacing-7: 61px;
   --spacing-8: 76px;
+  --spacing-9: 100px;
   --color-negro:hsla(240, 26%, 14%, 1);
   --color-blanco:hsla(0, 0%, 100%, 1);
   --color-amarillo:hsla(57, 100%, 48%, 1);
@@ -53,6 +54,17 @@
   --font-size-h4:32px;
   --font-size-boton:20px;
   --font-size-negrilla:32px;
+
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
 }
 
 @layer base {
@@ -60,3 +72,320 @@
     font-family: var(--font-aspekta);
   }
 }
+@layer components {
+
+  /* ==========================================================
+     COMPONENTES REUTILIZABLES
+     ========================================================== */
+
+  .logo-ges {
+    display: block;
+    flex-shrink: 0;
+
+    width: 68px;
+    height: 26px;
+
+    background: url("../images/logo_ges_blanco.svg") center / contain no-repeat;
+  }
+
+  .menu-toggle,
+  .menu-close {
+
+    display: block;
+
+    width: var(--spacing-4);
+    height: var(--spacing-4);
+
+    cursor: pointer;
+
+    border: 0;
+    background-color: transparent;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(--spacing-2);
+
+    transition: opacity .3s ease;
+
+    span {
+
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      margin: -1px;
+      padding: 0;
+
+      overflow: hidden;
+
+      clip: rect(0,0,0,0);
+
+      white-space: nowrap;
+
+      border: 0;
+
+    }
+
+  }
+
+  .menu-toggle {
+    background-image: url("../images/menu_icon.svg");
+  }
+
+  .menu-close {
+    background-image: url("../images/close_icon.svg");
+  }
+
+  /* ==========================================================
+     HEADER
+     ========================================================== */
+
+  .site-header {
+
+    position: relative;
+
+    z-index: 50;
+
+    .header-bar {
+
+      background: var(--color-negro);
+
+    }
+
+  }
+
+  /* ==========================================================
+     OVERLAY
+     ========================================================== */
+
+  .site-navigation {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: var(--color-negro);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+            opacity .3s ease,
+            visibility .3s ease;
+
+    &.is-open {
+
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+
+    }
+
+    .menu-principal {
+
+      margin: var(--spacing-7) auto 0;
+
+      padding: 0;
+
+      list-style: none;
+
+      li {
+
+        position: relative;
+
+        padding: var(--spacing-1) 0;
+
+        &::after {
+
+          content: "";
+
+          position: absolute;
+
+          left: 0;
+          bottom: 0;
+
+          width: 100%;
+          height: 1px;
+
+          background: linear-gradient(
+                  90deg,
+                  var(--color-azul-electrico),
+                  var(--color-fucsia),
+                  var(--color-blanco)
+          );
+
+        }
+
+        a {
+
+          display: flex;
+
+          justify-content: center;
+
+          align-items: center;
+
+          color: var(--color-blanco);
+
+          text-decoration: none;
+
+          text-transform: uppercase;
+
+          font-size: var(--font-size-h4);
+
+          transition: color .25s ease;
+
+          &:hover {
+
+            color: var(--color-amarillo);
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  /*--------------------------------------------------------------
+# GES Slider Base
+--------------------------------------------------------------*/
+
+  .ges-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ges-slider__viewport {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ges-slider__track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ges-slider__item {
+    position: relative;
+  }
+
+  .ges-slider__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /*--------------------------------------------------------------
+  # Hero Slider
+  --------------------------------------------------------------*/
+
+  .ges-slider--hero {
+    height: 682px;
+    background: var(--color-white);
+  }
+
+  .ges-slider--hero .ges-slider__viewport {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    bottom: 32px;
+    left: 32px;
+  }
+
+  .ges-slider--hero .ges-slider__track {
+    position: relative;
+  }
+
+  .ges-slider--hero .ges-slider__item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+            opacity 900ms ease,
+            visibility 900ms ease;
+  }
+
+  .ges-slider--hero .ges-slider__item.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+  .ges-slider--hero .ges-slider__image {
+    object-position: center center;
+    transform: scale(1);
+    transition: transform 6000ms ease;
+  }
+
+  .ges-slider--hero .ges-slider__item.is-active .ges-slider__image {
+    transform: scale(1.03);
+  }
+
+  /* Pagination hero */
+
+  .ges-slider--hero .ges-slider__pagination {
+    position: absolute;
+    left: 50%;
+    bottom: 56px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(-50%);
+  }
+
+  .ges-slider--hero .ges-slider__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #ffffff;
+    cursor: pointer;
+    transition:
+            width 250ms ease,
+            opacity 250ms ease;
+  }
+
+  .ges-slider--hero .ges-slider__dot.is-active {
+    width: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .ges-slider--hero {
+      height: 682px;
+    }
+
+    .ges-slider--hero .ges-slider__viewport {
+      top: 32px;
+      right: 32px;
+      bottom: 32px;
+      left: 32px;
+    }
+
+    .ges-slider--hero .ges-slider__pagination {
+      bottom: 48px;
+    }
+
+    .ges-slider--hero .ges-slider__dot {
+      width: 7px;
+      height: 7px;
+    }
+
+    .ges-slider--hero .ges-slider__dot.is-active {
+      width: 32px;
+    }
+  }
+
+ }
+

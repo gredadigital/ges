@@ -5,21 +5,17 @@
 
 get_header();
 
-$intro = carbon_get_the_post_meta('ges_contact_intro');
+$intro                    = carbon_get_the_post_meta( 'ges_contact_intro' );
+$form_shortcode           = carbon_get_the_post_meta( 'ges_contact_form_shortcode' );
 
-$form_shortcode = carbon_get_the_post_meta('ges_contact_form_shortcode');
+$map_embed                = carbon_get_the_post_meta( 'ges_contact_map_embed' );
+$schedule                 = carbon_get_the_post_meta( 'ges_contact_schedule' );
+$social                   = carbon_get_the_post_meta( 'ges_contact_social' );
 
-$map_embed = carbon_get_the_post_meta('ges_contact_map_embed');
+$branches                 = carbon_get_the_post_meta( 'ges_contact_branches' );
 
-$schedule = carbon_get_the_post_meta('ges_contact_schedule');
-
-$social = carbon_get_the_post_meta('ges_contact_social');
-
-$branches = carbon_get_the_post_meta('ges_contact_branches');
-
-$suggestions_intro = carbon_get_the_post_meta('ges_contact_suggestions_intro');
-
-$suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_shortcode');
+$suggestions_intro        = carbon_get_the_post_meta( 'ges_contact_suggestions_intro' );
+$suggestions_shortcode    = carbon_get_the_post_meta( 'ges_contact_suggestions_shortcode' );
 
 ?>
 
@@ -33,11 +29,11 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
                 <div class="section-header__line"></div>
 
-                <?php if ($intro) : ?>
+                <?php if ( ! empty( $intro ) ) : ?>
 
                     <div class="contact-header__intro">
 
-                        <?php echo wpautop(esc_html($intro)); ?>
+                        <?php echo wpautop( esc_html( $intro ) ); ?>
 
                     </div>
 
@@ -55,10 +51,8 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
                 <?php
 
-                if (!empty($form_shortcode)) {
-
-                    echo do_shortcode($form_shortcode);
-
+                if ( ! empty( $form_shortcode ) ) {
+                    echo do_shortcode( $form_shortcode );
                 }
 
                 ?>
@@ -77,11 +71,14 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
                 <div class="section-header__line"></div>
 
-                <?php if ($map_embed) : ?>
+                <?php if ( ! empty( $map_embed ) ) : ?>
 
                     <div class="contact-map">
 
-                        <?php echo $map_embed; ?>
+                        <?php
+                        // El contenido proviene del administrador y corresponde al iframe de Google Maps.
+                        echo $map_embed;
+                        ?>
 
                     </div>
 
@@ -91,19 +88,15 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
                 <div class="contact-location__info">
 
-                    <?php if ($schedule) : ?>
+                    <?php if ( ! empty( $schedule ) ) : ?>
 
                         <article class="contact-card">
 
-                            <h3>
-
-                                Horario de atención
-
-                            </h3>
+                            <h3>Horario de atención</h3>
 
                             <div>
 
-                                <?php echo apply_filters('the_content', $schedule); ?>
+                                <?php echo apply_filters( 'the_content', $schedule ); ?>
 
                             </div>
 
@@ -113,39 +106,39 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
 
 
-                    <?php if (!empty($social)) : ?>
+                    <?php if ( ! empty( $social ) ) : ?>
 
                         <article class="contact-card">
 
-                            <h3>
+                            <h3>Redes sociales</h3>
 
-                                Redes sociales
+                            <ul class="contact-social">
 
-                            </h3>
-
-                            <ul>
-
-                                <?php foreach ($social as $network) : ?>
+                                <?php foreach ( $social as $network ) : ?>
 
                                     <li>
 
                                         <a
-                                                href="<?php echo esc_url($network['url']); ?>"
+                                                href="<?php echo esc_url( $network['url'] ); ?>"
                                                 target="_blank"
-                                                rel="noopener"
+                                                rel="noopener noreferrer"
                                         >
 
                                             <strong>
 
-                                                <?php echo esc_html($network['network']); ?>
+                                                <?php echo esc_html( $network['network'] ); ?>
 
                                             </strong>
 
-                                            <span>
+                                            <?php if ( ! empty( $network['username'] ) ) : ?>
 
-                                            <?php echo esc_html($network['username']); ?>
+                                                <span>
 
-                                        </span>
+                                                <?php echo esc_html( $network['username'] ); ?>
+
+                                            </span>
+
+                                            <?php endif; ?>
 
                                         </a>
 
@@ -167,53 +160,61 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
 
 
-        <?php if (!empty($branches)) : ?>
+        <?php if ( ! empty( $branches ) ) : ?>
 
             <section class="contact-branches">
 
                 <div class="container">
 
-                    <h2>
-
-                        Nuestras sucursales
-
-                    </h2>
+                    <h2>Nuestras sucursales</h2>
 
                     <div class="section-header__line"></div>
 
                     <div class="branches-grid">
 
-                        <?php foreach ($branches as $branch) : ?>
+                        <?php foreach ( $branches as $branch ) : ?>
 
                             <article class="branch-card">
 
                                 <h3>
 
-                                    <?php echo esc_html($branch['city']); ?>
+                                    <?php echo esc_html( $branch['city'] ); ?>
 
                                 </h3>
 
-                                <p>
+                                <?php if ( ! empty( $branch['address'] ) ) : ?>
 
-                                    <?php echo nl2br(esc_html($branch['address'])); ?>
+                                    <p>
 
-                                </p>
+                                        <?php echo nl2br( esc_html( $branch['address'] ) ); ?>
 
-                                <p>
+                                    </p>
 
-                                    <?php echo esc_html($branch['phone']); ?>
+                                <?php endif; ?>
 
-                                </p>
+                                <?php if ( ! empty( $branch['phone'] ) ) : ?>
 
-                                <p>
+                                    <p>
 
-                                    <a href="mailto:<?php echo esc_attr($branch['email']); ?>">
+                                        <?php echo esc_html( $branch['phone'] ); ?>
 
-                                        <?php echo esc_html($branch['email']); ?>
+                                    </p>
 
-                                    </a>
+                                <?php endif; ?>
 
-                                </p>
+                                <?php if ( ! empty( $branch['email'] ) ) : ?>
+
+                                    <p>
+
+                                        <a href="mailto:<?php echo antispambot( esc_attr( $branch['email'] ) ); ?>">
+
+                                            <?php echo esc_html( $branch['email'] ); ?>
+
+                                        </a>
+
+                                    </p>
+
+                                <?php endif; ?>
 
                             </article>
 
@@ -233,19 +234,15 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
             <div class="container">
 
-                <h2>
-
-                    Buzón de sugerencias
-
-                </h2>
+                <h2>Buzón de sugerencias</h2>
 
                 <div class="section-header__line"></div>
 
-                <?php if ($suggestions_intro) : ?>
+                <?php if ( ! empty( $suggestions_intro ) ) : ?>
 
                     <div class="contact-suggestions__intro">
 
-                        <?php echo wpautop(esc_html($suggestions_intro)); ?>
+                        <?php echo wpautop( esc_html( $suggestions_intro ) ); ?>
 
                     </div>
 
@@ -253,10 +250,8 @@ $suggestions_shortcode = carbon_get_the_post_meta('ges_contact_suggestions_short
 
                 <?php
 
-                if (!empty($suggestions_shortcode)) {
-
-                    echo do_shortcode($suggestions_shortcode);
-
+                if ( ! empty( $suggestions_shortcode ) ) {
+                    echo do_shortcode( $suggestions_shortcode );
                 }
 
                 ?>

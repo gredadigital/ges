@@ -2,7 +2,7 @@
 /**
  * Template Name: Home
  */
-
+ges_enqueue_component('slider');
 get_header();
 
 $slider = carbon_get_the_post_meta( 'ges_home_slider' );
@@ -20,42 +20,47 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
         <?php if ( ! empty( $slider ) ) : ?>
 
-            <section class="hero-slider">
+            <section class="ges-slider ges-slider--hero" data-slider="fade">
 
-                <div class="hero-slider__wrapper">
+                <div class="ges-slider__viewport">
 
-                    <?php foreach ( $slider as $slide ) : ?>
+                    <div class="ges-slider__track">
 
-                        <article class="hero-slider__slide">
+                        <?php foreach ($slider as $index => $slide) : ?>
 
-                            <?php
-                            echo wp_get_attachment_image(
-                                    $slide['imagen'],
-                                    'full',
-                                    false,
-                                    [
-                                            'class' => 'hero-slider__image',
-                                            'alt'   => $slide['alt'] ?? '',
-                                    ]
-                            );
-                            ?>
+                            <article class="ges-slider__item <?php echo $index === 0 ? 'is-active' : ''; ?>">
 
-                        </article>
+                                <?php
+                                echo wp_get_attachment_image(
+                                        $slide['imagen'],
+                                        'full',
+                                        false,
+                                        [
+                                                'class' => 'ges-slider__image',
+                                                'alt' => $slide['alt'] ?? '',
+                                                'loading' => $index === 0 ? 'eager' : 'lazy',
+                                                'fetchpriority' => $index === 0 ? 'high' : 'auto',
+                                        ]
+                                );
+                                ?>
 
-                    <?php endforeach; ?>
+                            </article>
 
-                </div>
+                        <?php endforeach; ?>
 
-                <div class="hero-slider__pagination"></div>
-
-                <div class="hero-slider__scroll">
-
-                    <span>↓</span>
+                    </div>
 
                 </div>
+
+                <div class="ges-slider__pagination"></div>
 
             </section>
 
+            <div class="flex justify-center mb-9">
+                <span>
+                    <img src="<?php bloginfo('template_url'); ?>/assets/images/flecha_abajo.svg" alt="">
+                </span>
+            </div>
         <?php endif; ?>
 
 
