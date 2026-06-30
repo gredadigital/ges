@@ -7,10 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-white: #fff;
     --font-weight-thin: 100;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --spacing-1: 16px;
@@ -224,6 +221,12 @@
   .flex-1 {
     flex: 1;
   }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -397,7 +400,7 @@
   }
   .ges-slider--hero {
     height: 682px;
-    background: var(--color-white);
+    background: var(--color-blanco);
   }
   .ges-slider--hero .ges-slider__viewport {
     position: absolute;
@@ -475,6 +478,67 @@
       width: 32px;
     }
   }
+  .ges-slider[data-renderer="translate"] .ges-slider__viewport {
+    touch-action: pan-y;
+    overflow: hidden;
+  }
+  .ges-slider[data-renderer="translate"] .ges-slider__track {
+    display: flex;
+    align-items: flex-start;
+    transition: transform .45s ease;
+    will-change: transform;
+    box-sizing: border-box;
+  }
+  .ges-slider[data-renderer="translate"] .ges-slider__item {
+    flex-shrink: 0;
+  }
+  .servicios {
+    width: 100%;
+  }
+  .servicios .ges-slider__track {
+    gap: 106px;
+    align-items: flex-start;
+    will-change: transform;
+  }
+  .servicios .ges-slider__item {
+    flex: 0 0 427px;
+  }
+  @media (max-width:1024px) {
+    .servicios .ges-slider__track {
+      gap: 20px;
+    }
+    .servicios .ges-slider__item {
+      flex: 0 0 395px;
+    }
+    @media (max-width:767px) {
+      .servicios .ges-slider__track {
+        gap: 16px;
+      }
+      .servicios .ges-slider__item {
+        flex: 0 0 306px;
+      }
+    }
+  }
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
 }
 @property --tw-font-weight {
   syntax: "*";
@@ -483,6 +547,11 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-font-weight: initial;
     }
   }

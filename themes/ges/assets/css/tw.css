@@ -65,6 +65,10 @@
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
+  --container-desktop: 1728px;
+  --container-tablet: 100%;
+
+
 }
 
 @layer base {
@@ -288,7 +292,7 @@
 
   .ges-slider--hero {
     height: 682px;
-    background: var(--color-white);
+    background: var(--color-blanco);
   }
 
   .ges-slider--hero .ges-slider__viewport {
@@ -385,6 +389,85 @@
     .ges-slider--hero .ges-slider__dot.is-active {
       width: 32px;
     }
+  }
+
+  /*==============================================================
+=  Translate Renderer
+==============================================================*/
+
+  .ges-slider[data-renderer="translate"] .ges-slider__viewport {
+    touch-action: pan-y;
+    overflow: hidden;
+
+  }
+
+  .ges-slider[data-renderer="translate"] .ges-slider__track {
+
+    display: flex;
+    align-items: flex-start;
+    transition: transform .45s ease;
+    will-change: transform;
+    box-sizing:border-box;
+
+  }
+
+  .ges-slider[data-renderer="translate"] .ges-slider__item {
+
+    flex-shrink: 0;
+
+  }
+  /*==============================================================
+=  Servicios
+==============================================================*/
+
+  .servicios {
+
+    width: 100%;
+
+  }
+
+  .servicios .ges-slider__track {
+
+    gap: 106px;
+    align-items: flex-start;
+    will-change: transform;
+
+  }
+
+  .servicios .ges-slider__item {
+
+    flex: 0 0 427px;
+
+  }
+  @media (max-width:1024px){
+
+    .servicios .ges-slider__track{
+
+      gap:20px;
+
+    }
+
+    .servicios .ges-slider__item{
+
+      flex:0 0 395px;
+
+    }
+    @media (max-width:767px){
+
+      .servicios .ges-slider__track{
+
+        gap:16px;
+
+      }
+
+      .servicios .ges-slider__item{
+
+        flex:0 0 306px;
+
+      }
+
+    }
+
   }
 
  }

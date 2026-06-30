@@ -63,8 +63,6 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
             </div>
         <?php endif; ?>
 
-
-
         <?php if ( ! empty( $servicios ) ) : ?>
 
             <section class="servicios">
@@ -77,52 +75,70 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                     </header>
 
-                    <div class="servicios__slider">
+                    <section
+                            class="ges-slider ges-slider--services"
+                            data-renderer="translate"
+                            data-pagination="false"
+                            data-autoplay="0"
+                            data-loop="false"
+                            data-touch="true">
 
-                        <?php foreach ( $servicios as $servicio ) : ?>
+                        <div class="ges-slider__viewport">
 
-                            <article class="servicio-card">
+                            <div class="ges-slider__track">
 
-                                <div class="servicio-card__image">
+                                <?php foreach ( $servicios as $servicio ) : ?>
 
-                                    <?php
-                                    echo wp_get_attachment_image(
-                                            $servicio['imagen'],
-                                            'large'
-                                    );
-                                    ?>
+                                    <article class="ges-slider__item">
 
-                                </div>
+                                        <article class="servicio-card">
 
-                                <div class="servicio-card__content">
+                                            <div class="servicio-card__image">
 
-                                    <h3>
+                                                <?php
+                                                echo wp_get_attachment_image(
+                                                        $servicio['imagen'],
+                                                        'large'
+                                                );
+                                                ?>
 
-                                        <?php echo esc_html( $servicio['titulo'] ); ?>
+                                            </div>
 
-                                    </h3>
+                                            <div class="servicio-card__content">
 
-                                    <p>
+                                                <h3>
 
-                                        <?php echo esc_html( $servicio['texto'] ); ?>
+                                                    <?php echo esc_html( $servicio['titulo'] ); ?>
 
-                                    </p>
+                                                </h3>
 
-                                </div>
+                                                <p>
 
-                            </article>
+                                                    <?php echo esc_html( $servicio['texto'] ); ?>
 
-                        <?php endforeach; ?>
+                                                </p>
 
-                    </div>
+                                            </div>
+
+                                        </article>
+
+                                    </article>
+
+                                <?php endforeach; ?>
+
+                            </div>
+
+                        </div>
+
+                        <div class="ges-slider__pagination"></div>
+
+                    </section>
 
                 </div>
 
             </section>
 
         <?php endif; ?>
-
-
 
         <?php if ( ! empty( $pasos ) ) : ?>
 
