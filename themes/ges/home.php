@@ -69,14 +69,37 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                 <div class="container">
 
-                    <header class="section-header">
+                    <header class="section-header p-4">
 
-                        <h2>Nuestros servicios</h2>
+                        <h2 class="
+                           text-mobile-h2
+                           text-center
+                           uppercase
+                           font-thin
+                           px-8
+                           leading-[100%]
+                           tracking-[0.396px]
+                           mb-1
+                           relative
+                           inline-block
+                           after:content-['']
+                           after:absolute
+                           after:left-1/2
+                           after:-translate-x-1/2
+                           after:-bottom-4
+                           after:h-[4px]
+                           after:w-[60px]
+                           after:rounded-full
+                           after:bg-linear-to-r
+                           after:from-azul-electrico
+                           after:via-fucsia
+                           after:to-fucsia-200
+                        ">Nuestros servicios</h2>
 
                     </header>
 
                     <section
-                            class="ges-slider ges-slider--services"
+                            class="ges-slider ges-slider--services mb-[120px]"
                             data-renderer="translate"
                             data-pagination="false"
                             data-autoplay="0"
@@ -89,11 +112,11 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                                 <?php foreach ( $servicios as $servicio ) : ?>
 
-                                    <article class="ges-slider__item">
+                                    <article class="ges-slider__item px-1">
 
                                         <article class="servicio-card">
 
-                                            <div class="servicio-card__image">
+                                            <div class="servicio-card__image pb-1">
 
                                                 <?php
                                                 echo wp_get_attachment_image(
@@ -106,13 +129,13 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                                             <div class="servicio-card__content">
 
-                                                <h3>
+                                                <h3 class="text-mobile-h3 mb-1 font-thin">
 
                                                     <?php echo esc_html( $servicio['titulo'] ); ?>
 
                                                 </h3>
 
-                                                <p>
+                                                <p class="text-mobile-p font-thin">
 
                                                     <?php echo esc_html( $servicio['texto'] ); ?>
 
@@ -146,13 +169,37 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                 <div class="container">
 
-                    <header class="section-header">
+                    <header class="section-header mb-4">
 
-                        <h2>Pasos para trabajar con nosotros</h2>
+                        <h2 class="
+                           text-mobile-h2
+                           text-center
+                           uppercase
+                           font-thin
+                           px-6
+                           leading-[100%]
+                           tracking-[0.396px]
+                           mb-1
+                           relative
+                           inline-block
+                           after:content-['']
+                           after:absolute
+                           after:left-1/2
+                           after:-translate-x-1/2
+                           after:-bottom-4
+                           after:h-[4px]
+                           after:w-[60px]
+                           after:rounded-full
+                           after:bg-linear-to-r
+                           after:from-azul-electrico
+                           after:via-fucsia
+                           after:to-fucsia-200
+
+">Pasos para trabajar con nosotros</h2>
 
                     </header>
 
-                    <div class="pasos__slider">
+                    <div class="pasos__slider bg-[linear-gradient(0deg,#005CFF_25.02%,#375EFF_32.07%,#8B61FF_43.82%,#C963FF_54%,#F065FF_61.04%,#F6F_64.96%,#F764FB_67.31%,#E45FF1_71.22%,#C356E1_75.92%,#964BCB_80.62%,#5C3CAF_86.88%,#162B8C_92.37%,#132A8B_93.15%)]">
 
                         <?php foreach ( $pasos as $paso ) : ?>
 
@@ -160,7 +207,7 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                                 <div class="paso-card__numero">
 
-                                    PASO
+
 
                                     <?php echo esc_html( $paso['numero'] ); ?>
 
@@ -233,9 +280,32 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                 <div class="container">
 
-                    <header class="section-header">
+                    <header class="section-header mb-4">
 
-                        <h2>Nuestra esencia</h2>
+                        <h2 class="
+ text-mobile-h2
+                           text-center
+                           uppercase
+                           font-thin
+                           px-6
+                           leading-[100%]
+                           tracking-[0.396px]
+                           mb-1
+                           relative
+                           inline-block
+                           after:content-['']
+                           after:absolute
+                           after:left-1/2
+                           after:-translate-x-1/2
+                           after:-bottom-4
+                           after:h-[4px]
+                           after:w-[60px]
+                           after:rounded-full
+                           after:bg-linear-to-r
+                           after:from-azul-electrico
+                           after:via-fucsia
+                           after:to-fucsia-200
+">Nuestra esencia</h2>
 
                     </header>
 
