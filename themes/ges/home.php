@@ -165,104 +165,223 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
         <?php if ( ! empty( $pasos ) ) : ?>
 
-            <section class="pasos">
+            <section class="pasos py-10 md:py-16">
 
                 <div class="container">
 
-                    <header class="section-header mb-4">
+                    <header class="section-header text-center mb-8 md:mb-12">
 
                         <h2 class="
-                           text-mobile-h2
-                           text-center
-                           uppercase
-                           font-thin
-                           px-6
-                           leading-[100%]
-                           tracking-[0.396px]
-                           mb-1
-                           relative
-                           inline-block
-                           after:content-['']
-                           after:absolute
-                           after:left-1/2
-                           after:-translate-x-1/2
-                           after:-bottom-4
-                           after:h-[4px]
-                           after:w-[60px]
-                           after:rounded-full
-                           after:bg-linear-to-r
-                           after:from-azul-electrico
-                           after:via-fucsia
-                           after:to-fucsia-200
-
-">Pasos para trabajar con nosotros</h2>
+                text-mobile-h2
+                md:text-desktop-h2
+                text-center
+                uppercase
+                font-thin
+                px-6
+                leading-[100%]
+                tracking-[0.396px]
+                relative
+                inline-block
+                after:content-['']
+                after:absolute
+                after:left-1/2
+                after:-translate-x-1/2
+                after:-bottom-4
+                after:h-[4px]
+                after:w-[60px]
+                after:rounded-full
+                after:bg-linear-to-r
+                after:from-azul-electrico
+                after:via-fucsia
+                after:to-fucsia-200
+            ">
+                            Pasos para trabajar con nosotros
+                        </h2>
 
                     </header>
 
-                    <div class="pasos__slider bg-[linear-gradient(0deg,#005CFF_25.02%,#375EFF_32.07%,#8B61FF_43.82%,#C963FF_54%,#F065FF_61.04%,#F6F_64.96%,#F764FB_67.31%,#E45FF1_71.22%,#C356E1_75.92%,#964BCB_80.62%,#5C3CAF_86.88%,#162B8C_92.37%,#132A8B_93.15%)]">
+                    <div
+                            class="
+                ges-slider
+                pasos__slider
+                relative
+                w-full
+                min-h-[684px]
+                md:min-h-[493px]
+                lg:min-h-[680px]
+                overflow-hidden
+                bg-[linear-gradient(0deg,#005CFF_25.02%,#375EFF_32.07%,#8B61FF_43.82%,#C963FF_54%,#F065FF_61.04%,#F6F_64.96%,#F764FB_67.31%,#E45FF1_71.22%,#C356E1_75.92%,#964BCB_80.62%,#5C3CAF_86.88%,#162B8C_92.37%,#132A8B_93.15%)]
+                [&_.ges-slider__item]:opacity-0
+                [&_.ges-slider__item]:pointer-events-none
+                [&_.ges-slider__item]:transition-opacity
+                [&_.ges-slider__item]:duration-300
+                [&_.ges-slider__item.is-active]:opacity-100
+                [&_.ges-slider__item.is-active]:pointer-events-auto
+                [&_.ges-slider__dot]:w-[35px]
+                [&_.ges-slider__dot]:h-[4px]
+                [&_.ges-slider__dot]:bg-white/60
+                [&_.ges-slider__dot.is-active]:bg-azul-electrico
+            "
+                            data-renderer="fade"
+                            data-autoplay="0"
+                            data-loop="true"
+                    >
 
-                        <?php foreach ( $pasos as $paso ) : ?>
+                        <div
+                                class="
+                    pasos__panel
+                    absolute
+                    inset-0
+                    z-10
+                    bg-[#181827]
+                    [clip-path:polygon(100%_0%,82%_76%,0%_100%,18%_16%)]
+                "
+                        ></div>
 
-                            <article class="paso-card">
-
-                                <div class="paso-card__numero">
-
-
-
-                                    <?php echo esc_html( $paso['numero'] ); ?>
-
-                                </div>
-
-                                <h3 class="paso-card__titulo">
-
-                                    <?php echo esc_html( $paso['titulo'] ); ?>
-
-                                </h3>
-
-                                <div class="paso-card__texto">
-
-                                    <p>
-
-                                        <?php echo esc_html( $paso['texto'] ); ?>
-
-                                    </p>
-
-                                </div>
-
-                            </article>
-
-                        <?php endforeach; ?>
-
-                    </div>
-
-                    <div class="pasos__controls">
-
-                        <button type="button" class="pasos-prev">
-
-                            ←
-
-                        </button>
-
-                        <div class="pasos-pagination"></div>
-
-                        <button type="button" class="pasos-next">
-
-                            →
-
-                        </button>
-
-                    </div>
-
-                    <div class="pasos__cta">
-
-                        <a
-                                href="<?php echo esc_url( home_url( '/contacto/' ) ); ?>"
-                                class="button"
+                        <div
+                                class="
+                    absolute
+                    z-20
+                    left-[25%]
+                    top-[22%]
+                    w-[50%]
+                    h-[42%]
+                    md:left-[22%]
+                    md:top-[23%]
+                    md:w-[58%]
+                    md:h-[35%]
+                    lg:left-[22%]
+                    lg:top-[28%]
+                    lg:w-[60%]
+                    lg:h-[30%]
+                "
                         >
 
-                            Contacto →
+                            <div class="ges-slider__viewport relative h-full overflow-hidden">
 
-                        </a>
+                                <div class="ges-slider__track relative h-full">
+
+                                    <?php foreach ( $pasos as $index => $paso ) : ?>
+
+                                        <article
+                                                class="ges-slider__item absolute inset-0 <?php echo $index === 0 ? 'is-active' : ''; ?>"
+                                        >
+
+                                            <div class="paso-card max-w-[360px] md:max-w-[620px] lg:max-w-[900px]">
+
+                                                <div class="
+                                        paso-card__numero
+                                        text-blanco
+                                        text-[12px]
+                                        font-bold
+                                        uppercase
+                                        leading-[100%]
+
+                                    ">
+                                                    <?php echo esc_html( $paso['numero'] ); ?>
+                                                </div>
+
+                                                <h3 class="
+                                        paso-card__titulo
+                                        text-white
+                                        text-mobile-h3
+                                        md:text-[26px]
+                                        lg:text-[32px]
+                                        font-thin
+                                        leading-[105%]
+                                        mb-1
+                                    ">
+                                                    <?php echo esc_html( $paso['titulo'] ); ?>
+                                                </h3>
+
+                                                <div class="
+                                        paso-card__texto
+                                        text-white
+                                        text-1
+                                        md:text-[20px]
+                                        lg:text-[28px]
+                                        font-thin
+                                        leading-[124%]
+                                    ">
+                                                    <?php echo wpautop( esc_html( $paso['texto'] ) ); ?>
+                                                </div>
+
+                                            </div>
+
+                                        </article>
+
+                                    <?php endforeach; ?>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="
+                pasos__controls
+                absolute
+                z-30
+                left-1/2
+                bottom-[25%]
+                -translate-x-1/2
+                inline-flex
+                items-center
+                justify-center
+                gap-[16px]
+                md:bottom-[25%]
+                lg:bottom-[33%]
+                w-fit
+            ">
+
+                            <button type="button" class="ges-slider__prev text-white text-1 leading-none" aria-label="Paso anterior">
+                                ←
+                            </button>
+
+                            <div class="ges-slider__pagination inline-flex items-center gap-[8px] w-fit shrink-0"></div>
+
+                            <button type="button" class="ges-slider__next text-white text-1 leading-none" aria-label="Paso siguiente">
+                                →
+                            </button>
+
+                        </div>
+
+                        <div class="
+                pasos__cta
+                absolute
+                z-30
+                right-[8%]
+                bottom-[6%]
+                md:right-[5%]
+                md:bottom-[12%]
+                lg:right-[6%]
+                lg:bottom-[10%]
+            ">
+
+                            <a
+                                    href="<?php echo esc_url( home_url( '/contacto/' ) ); ?>"
+                                    class="
+                        inline-flex
+                        items-center
+                        justify-center
+                        gap-3
+                        py-[8px]
+                        px-[10px]
+                        rounded-[8px]
+                        bg-blanco
+                        text-negro
+                        text-mobile-button
+                        md:text-[18px]
+                        lg:text-[22px]
+                        font-thin
+                        uppercase
+                        leading-none
+                    "
+                            >
+                                Contacto →
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -271,7 +390,6 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
             </section>
 
         <?php endif; ?>
-
 
 
         <?php if ( $mision || $vision || $valores ) : ?>
