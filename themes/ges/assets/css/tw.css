@@ -522,6 +522,133 @@
   .pasos__slider .ges-slider__dot.is-active {
     background: #005CFF;
   }
+  .elegirnos-card{
+    --border-width: 2px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fff;
+    border:none !important;
+  }
+
+  .elegirnos-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: var(--border-width);
+    border-radius: inherit;
+
+    background: var(--card-gradient);
+
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+    z-index: 0;
+  }
+  .elegirnos-card > *{
+    position:relative;
+    z-index:1;
+  }
+
+  /* ===========================
+     TARJETAS IMPARES
+  =========================== */
+
+  .elegirnos-card:nth-child(odd){
+    --card-gradient:
+            linear-gradient(
+                    90deg,
+                    #F6EA00 21%,
+                    #EEE802 24%,
+                    #DBE209 28%,
+                    #BBDA14 33%,
+                    #8FCE24 39%,
+                    #56BE38 46%,
+                    #24B14B 51%,
+                    #23A949 56%,
+                    #229645 64%,
+                    #1F753E 73%,
+                    #1C4935 84%,
+                    #19192B 94%
+            );
+  }
+
+  /* ===========================
+     TARJETAS PARES
+  =========================== */
+
+  .elegirnos-card:nth-child(even){
+    --card-gradient:
+            linear-gradient(
+                    90deg,
+                    #005CFF 0%,
+                    #5E55FF 18%,
+                    #E55CFF 45%,
+                    #EC71FF 60%,
+                    #F291FF 74%,
+                    #F8B9FF 88%,
+                    #FFFFFF 100%
+            );
+  }
+
+  .elegirnos-card__icon{
+    width:40px;
+    height:40px;
+    margin-bottom:48px;
+
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:contain;
+  }
+
+  .elegirnos-card:nth-child(1) .elegirnos-card__icon{
+    background-image:url("../images/icono_qs1.svg");
+  }
+
+  .elegirnos-card:nth-child(2) .elegirnos-card__icon{
+    background-image:url("../images/icono_qs2.svg");
+  }
+
+  .elegirnos-card:nth-child(3) .elegirnos-card__icon{
+    background-image:url("../images/icono_qs3.svg");
+  }
+
+  .elegirnos-card:nth-child(4) .elegirnos-card__icon{
+    background-image:url("../images/icono_qs4.svg");
+  }
+  .compromiso-visual__graphic{
+    width:110px;
+    height: 110px;
+    background-size:contain;
+    background-image: url("../images/ornamento_qs.svg");
+  }
+  .presidencia{
+    background: linear-gradient(
+            180deg,
+
+            #19192B 0%,
+            #19192B 72%,
+
+            #1C4935 78%,
+            #1F753E 82%,
+
+            #229645 86%,
+            #23A949 89%,
+            #24B14B 91%,
+
+            #56BE38 94%,
+            #8FCE24 96%,
+            #BBDA14 97.5%,
+            #DBE209 98.5%,
+            #EEE802 99.3%,
+            #F6EA00 100%
+    );
+  }
 
  }
 

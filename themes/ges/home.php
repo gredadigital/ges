@@ -394,7 +394,7 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
         <?php if ( $mision || $vision || $valores ) : ?>
 
-            <section class="esencia">
+            <section class="esencia px-2 py-9">
 
                 <div class="container">
 
@@ -405,10 +405,11 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
                            text-center
                            uppercase
                            font-thin
-                           px-6
+                           px-8
                            leading-[100%]
                            tracking-[0.396px]
                            mb-1
+                           w-full
                            relative
                            inline-block
                            after:content-['']
@@ -431,15 +432,37 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                         <?php if ( $mision ) : ?>
 
-                            <article class="esencia-card">
+                            <article class="esencia-card
+                                relative
+                                py-4
+  |                             after:content-['']
+                                after:absolute
+                                after:left-0
+                                after:bottom-0
+                                after:w-full
+                                after:h-[3px]
+                                after:bg-linear-to-r
+                                after:from-azul-electrico
+                                after:via-fucsia
+                                after:to-transparent
+                                ">
 
-                                <h3>
+                                <h3 class="
+                                    text-mobile-h3
+                                    mb-1
+                                    text-center
+                                    font-thin
+                                ">
 
                                     Misión
 
                                 </h3>
 
-                                <p>
+                                <p class="
+                                    text-mobile-p
+                                    text-center
+                                    font-thin
+                                ">
 
                                     <?php echo nl2br( esc_html( $mision ) ); ?>
 
@@ -453,15 +476,37 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                         <?php if ( $vision ) : ?>
 
-                            <article class="esencia-card">
+                            <article class="esencia-card
+                                relative
+                                py-4
+                                after:content-['']
+                                after:absolute
+                                after:left-0
+                                after:bottom-0
+                                after:w-full
+                                after:h-[3px]
+                                after:bg-linear-to-r
+                                after:from-azul-electrico
+                                after:via-fucsia
+                                after:to-transparent
+                            ">
 
-                                <h3>
+                                <h3 class="
+                                    text-mobile-h3
+                                    mb-1
+                                    text-center
+                                    font-thin
+                                ">
 
                                     Visión
 
                                 </h3>
 
-                                <p>
+                                <p class="
+                                     text-mobile-p
+                                    text-center
+                                    font-thin
+                                   ">
 
                                     <?php echo nl2br( esc_html( $vision ) ); ?>
 
@@ -475,15 +520,24 @@ $valores = carbon_get_the_post_meta( 'ges_home_valores' );
 
                         <?php if ( $valores ) : ?>
 
-                            <article class="esencia-card">
+                            <article class="esencia-card py-4">
 
-                                <h3>
+                                <h3 class="
+                                    text-mobile-h3
+                                    mb-1
+                                    text-center
+                                    font-thin
+                                ">
 
                                     Valores
 
                                 </h3>
 
-                                <p>
+                                <p class="
+                                    text-mobile-p
+                                    text-center
+                                    font-thin
+                                " >
 
                                     <?php echo nl2br( esc_html( $valores ) ); ?>
 

@@ -10,10 +10,30 @@ $servicios = carbon_get_the_post_meta( 'ges_servicios_paginas' );
 ?>
 
     <main class="services-page">
-        <section class="services-page__header">
+        <section class="services-page__header px-2">
             <div class="container">
                 <header class="section-header">
-                    <h1>Servicios</h1>
+                    <h2 class="
+ text-mobile-h2
+                                uppercase
+                                text-center
+                                font-thin
+                                w-full
+                                relative
+                                inline-block
+                                pb-6
+                                after:content-['']
+                                after:absolute
+                                after:left-1/2
+                                after:-translate-x-1/2
+                                after:bottom-4
+                                after:w-[100px]
+                                after:h-[8px]
+                                after:bg-linear-to-r
+                              after:from-azul-electrico
+                                after:via-fucsia
+                                after:to-transparent
+">Servicios</h2>
                 </header>
             </div>
         </section>
