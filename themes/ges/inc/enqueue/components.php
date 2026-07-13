@@ -68,6 +68,18 @@ function ges_enqueue_component( string $component ): void {
 
             ],
         ],
+        'showroom' => [
+            'base_path' => '/assets/js/components/showroom/',
+            'scripts'   => [
+
+                [
+                    'handle' => 'ges-showroom-init',
+                    'file'   => 'index.js',
+                    'deps'   => [],
+                ],
+
+            ],
+        ],
 
     ];
 

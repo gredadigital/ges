@@ -649,6 +649,85 @@
             #F6EA00 100%
     );
   }
+  /*service*/
+
+  .service-card {
+  }
+
+  .service-card__footer {
+    position: relative;
+    padding: 18px 20px;
+  }
+
+  .service-card__footer::before{
+    content:"";
+    position:absolute;
+    left:0px;
+    right:20px;
+    top:0;
+    height:3px;
+    width:100%;
+  }
+
+  /* ==========================
+     IMPARES
+  ========================== */
+
+  .service-card:nth-child(odd){
+    background: var(--color-negro);
+    color:var(--color-blanco);
+  }
+
+  .service-card:nth-child(odd) .service-card__footer{
+    background:#19192B;
+    color:#fff;
+  }
+
+  .service-card:nth-child(odd) .service-card__footer::before{
+    background:linear-gradient(
+            90deg,
+            #005CFF -1.51%,
+            #585FFF 17.49%,
+            #FF66FF 52.49%,
+            #FF70FF 58.49%,
+            #FF8DFF 68.49%,
+            #FFBDFF 82.49%,
+            #FFFFFF 98.49%
+    );
+  }
+
+  /* ==========================
+     PARES
+  ========================== */
+
+  .service-card:nth-child(even){
+    background:#FFFFFF;
+    color:#19192B;
+  }
+
+  .service-card:nth-child(even) .service-card__footer{
+    background:#FFFFFF;
+    color:#19192B;
+  }
+
+  .service-card:nth-child(even) .service-card__footer::before{
+    background:linear-gradient(
+            90deg,
+            #F6EA00 21%,
+            #EEE802 24%,
+            #DBE209 28%,
+            #BBDA14 33%,
+            #8FCE24 39%,
+            #56BE38 46%,
+            #24B14B 51%,
+            #23A949 56%,
+            #229645 64%,
+            #1F753E 73%,
+            #1C4935 84%,
+            #19192B 94%
+    );
+  }
+
 
  }
 

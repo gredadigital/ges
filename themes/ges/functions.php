@@ -21,6 +21,7 @@ function ges_enqueue_assets() {
 
     // Componentes
     ges_enqueue_component( 'slider' );
+    ges_enqueue_component( 'showroom' );
 
 }
 
