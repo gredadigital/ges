@@ -581,7 +581,7 @@ $get_gallery_ids = static function ($gallery): array {
 
     <?php if (!empty($specials) && is_array($specials)) : ?>
 
-        <section class="service-specials py-6 md:py-12">
+        <section class="service-specials py-6 md:py-12 px-2">
 
             <div class="container">
 
@@ -597,7 +597,7 @@ $get_gallery_ids = static function ($gallery): array {
                                 relative
                                 inline-block
                                 pb-6
-                                px-9
+                                px-6
                                 after:content-['']
                                 after:absolute
                                 after:left-1/2
@@ -622,131 +622,303 @@ $get_gallery_ids = static function ($gallery): array {
                         service-specials__list
                         flex
                         flex-col
-                        gap-6
+                        gap-1
                         md:gap-10
                     "
                 >
 
-                    <?php foreach ($specials as $special_index => $special) : ?>
+                    <?php foreach ( $specials as $special_index => $special ) : ?>
 
                         <?php
-                        $special_title = $special['title'] ?? '';
+                        $special_title   = $special['title'] ?? '';
                         $special_content = $special['content'] ?? '';
 
                         $gallery_ids = $get_gallery_ids(
-                            $special['gallery'] ?? []
+                                $special['gallery'] ?? []
                         );
+
+                        $description_id = 'special-description-' . $special_index;
                         ?>
 
                         <article
-                            class="
-                                service-special
-                                grid
-                                grid-cols-1
-                                md:grid-cols-2
-                                gap-3
-                                md:gap-6
-                                items-center
-                            "
+                                class="
+            service-special
+            relative
+            pb-4
+            md:pb-6
+            after:content-['']
+            after:absolute
+            after:left-0
+            after:bottom-0
+            after:w-full
+            after:h-px
+            after:bg-[linear-gradient(90deg,#005CFF_0%,#6666FF_36%,#FF66FF_68%,rgba(255,102,255,0)_100%)]
+        "
                         >
 
-                            <?php if (!empty($gallery_ids)) : ?>
+                            <?php if ( ! empty( $gallery_ids ) ) : ?>
 
                                 <div
-                                    class="
-                                        service-special__gallery
-                                        relative
-                                        overflow-hidden
-                                    "
+                                        class="
+                    ges-slider
+                    service-special__slider
+                    relative
+                    mb-0
+                    md:mb-4
+                "
+                                        data-renderer="translate"
+                                        data-autoplay="0"
+                                        data-loop="true"
+                                        data-pagination="false"
+                                        data-touch="true"
+                                        data-keyboard="true"
                                 >
 
                                     <div
-                                        class="
-                                            service-special__track
-                                            flex
-                                            overflow-x-auto
-                                            snap-x
-                                            snap-mandatory
-                                        "
+                                            class="
+                        ges-slider__viewport
+                        relative
+                        overflow-hidden
+                        touch-pan-y
+                    "
                                     >
 
-                                        <?php foreach ($gallery_ids as $image_id) : ?>
-
-                                            <figure
+                                        <div
                                                 class="
-                                                    service-special__image
-                                                    shrink-0
-                                                    w-full
-                                                    aspect-[4/3]
-                                                    snap-start
-                                                    overflow-hidden
-                                                "
-                                            >
-                                                <?php
-                                                echo wp_get_attachment_image(
-                                                    $image_id,
-                                                    'large',
-                                                    false,
-                                                    [
-                                                        'class' => implode(
-                                                            ' ',
-                                                            [
-                                                                'w-full',
-                                                                'h-full',
-                                                                'object-cover',
-                                                            ]
-                                                        ),
-                                                        'loading' => 'lazy',
-                                                    ]
-                                                );
-                                                ?>
-                                            </figure>
+                            ges-slider__track
+                            flex
+                            transition-transform
+                            duration-500
+                            ease-out
+                        "
+                                        >
 
-                                        <?php endforeach; ?>
+                                            <?php foreach ( $gallery_ids as $image_index => $image_id ) : ?>
+
+                                                <figure
+                                                        class="
+                                    ges-slider__item
+                                    service-special__image
+                                    shrink-0
+                                    w-full
+                                    aspect-[4/3]
+                                    overflow-hidden
+                                "
+                                                >
+                                                    <?php
+                                                    echo wp_get_attachment_image(
+                                                            $image_id,
+                                                            'large',
+                                                            false,
+                                                            [
+                                                                    'class' => implode(
+                                                                            ' ',
+                                                                            [
+                                                                                    'block',
+                                                                                    'w-full',
+                                                                                    'h-full',
+                                                                                    'object-cover',
+                                                                            ]
+                                                                    ),
+                                                                    'loading' => $image_index === 0
+                                                                            ? 'eager'
+                                                                            : 'lazy',
+                                                            ]
+                                                    );
+                                                    ?>
+                                                </figure>
+
+                                            <?php endforeach; ?>
+
+                                        </div>
 
                                     </div>
+
+                                    <?php if ( count( $gallery_ids ) > 1 ) : ?>
+
+                                        <button
+                                                type="button"
+                                                class="
+                            ges-slider__prev
+                            absolute
+                            left-1
+                            md:left-2
+                            top-1/2
+                            -translate-y-1/2
+                            z-10
+                            flex
+                            items-center
+                            justify-center
+                            w-[44px]
+                            h-[44px]
+                            rounded-full
+                            bg-[#15162F]
+                            text-white
+                            transition-opacity
+                            hover:opacity-80
+                        " data-slider-prev
+                                                aria-label="<?php esc_attr_e( 'Imagen anterior', 'ges' ); ?>"
+                                        >
+                                            <svg
+                                                    class="w-2 h-2"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    aria-hidden="true"
+                                            >
+                                                <path
+                                                        d="M15 4L7 12L15 20"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </button>
+
+                                        <button
+                                                type="button"
+                                                class="
+                            ges-slider__next
+                            absolute
+                            right-1
+                            md:right-2
+                            top-1/2
+                            -translate-y-1/2
+                            z-10
+                            flex
+                            items-center
+                            justify-center
+                            w-[44px]
+                            h-[44px]
+                            rounded-full
+                            bg-[#15162F]
+                            text-white
+                            transition-opacity
+                            hover:opacity-80
+                        " data-slider-next
+                                                aria-label="<?php esc_attr_e( 'Imagen siguiente', 'ges' ); ?>"
+                                        >
+                                            <svg
+                                                    class="w-2 h-2"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    aria-hidden="true"
+                                            >
+                                                <path
+                                                        d="M9 4L17 12L9 20"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </button>
+
+                                    <?php endif; ?>
 
                                 </div>
 
                             <?php endif; ?>
 
-
                             <div class="service-special__content">
 
-                                <?php if (!empty($special_title)) : ?>
+                                <?php if ( ! empty( $special_title ) ) : ?>
 
                                     <h3
-                                        class="
-                                            text-mobile-h3
-                                            md:text-desktop-h3
-                                            uppercase
-                                            font-thin
-                                            leading-tight
-                                            mb-2
-                                        "
+                                            class="
+                        text-mobile-h3
+                        md:text-desktop-h3
+                        font-thin
+                        leading-tight
+                        mb-2
+                    "
                                     >
-                                        <?php echo esc_html($special_title); ?>
+                                        <?php echo esc_html( $special_title ); ?>
                                     </h3>
 
                                 <?php endif; ?>
 
-                                <?php if (!empty($special_content)) : ?>
+                                <?php if ( ! empty( $special_content ) ) : ?>
+
+                                    <button
+                                            type="button"
+                                            class="
+                        service-special__toggle
+                        inline-flex
+                        items-center
+                        gap-1
+                        text-mobile-p
+                        md:text-desktop-p
+                        font-thin
+                        text-black/30
+                        transition-colors
+                        hover:text-black
+                    "
+                                            aria-expanded="false"
+                                            aria-controls="<?php echo esc_attr( $description_id ); ?>"
+                                            data-special-toggle
+                                    >
+                    <span data-special-toggle-label>
+                        <?php esc_html_e( 'Ver más', 'ges' ); ?>
+                    </span>
+
+                                        <svg
+                                                class="
+                            w-2
+                            h-2
+                            transition-transform
+                            duration-300
+                        "
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                aria-hidden="true"
+                                                data-special-toggle-icon
+                                        >
+                                            <path
+                                                    d="M4 8L12 16L20 8"
+                                                    stroke="currentColor"
+                                                    stroke-width="2.5"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </button>
 
                                     <div
-                                        class="
-                                            wysiwyg
-                                            text-mobile-p
-                                            md:text-desktop-p
-                                            font-thin
-                                            leading-relaxed
-                                        "
+                                            id="<?php echo esc_attr( $description_id ); ?>"
+                                            class="
+                        service-special__description
+                        grid
+                        grid-rows-[0fr]
+                        opacity-0
+                        transition-[grid-template-rows,opacity]
+                        duration-500
+                        ease-out
+                    "
+                                            aria-hidden="true"
+                                            data-special-description
                                     >
-                                        <?php
-                                        echo apply_filters(
-                                            'the_content',
-                                            $special_content
-                                        );
-                                        ?>
+                                        <div class="overflow-hidden">
+
+                                            <div
+                                                    class="
+                                wysiwyg
+                                pt-2
+                                text-mobile-p
+                                md:text-desktop-p
+                                font-thin
+                                leading-relaxed
+                            "
+                                            >
+                                                <?php
+                                                echo apply_filters(
+                                                        'the_content',
+                                                        $special_content
+                                                );
+                                                ?>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                 <?php endif; ?>
@@ -775,10 +947,11 @@ $get_gallery_ids = static function ($gallery): array {
         <section
             class="
                 service-machinery
-                bg-azul-oscuro
+                bg-negro
                 text-blanco
                 py-8
                 md:py-14
+                px-2
             "
         >
 
@@ -788,11 +961,27 @@ $get_gallery_ids = static function ($gallery): array {
 
                     <h2
                         class="
-                            text-mobile-h2
-                            md:text-desktop-h2
-                            text-center
-                            uppercase
-                            font-thin
+                              text-mobile-h2
+                                uppercase
+                                text-center
+                                font-thin
+                                w-full
+                                relative
+                                inline-block
+                                pb-6
+                                px-6
+                                after:content-['']
+                                after:absolute
+                                after:left-1/2
+                                after:-translate-x-1/2
+                                after:bottom-4
+                                after:w-[60px]
+                                after:h-[4px]
+                                after:bg-linear-to-r
+                              after:from-azul-electrico
+                                after:via-fucsia
+                                after:to-transparent
+                                 leading-[100%] tracking-[0.396px]
                         "
                     >
                         Nuestra maquinaria
@@ -810,134 +999,226 @@ $get_gallery_ids = static function ($gallery): array {
                     "
                 >
 
-                    <?php foreach ($machinery as $machine_index => $machine) : ?>
+                    <?php foreach ( $machinery as $machine ) : ?>
 
                         <?php
-                        $machine_title = $machine['title'] ?? '';
+                        $machine_title       = $machine['title'] ?? '';
                         $machine_description = $machine['description'] ?? '';
 
                         $gallery_ids = $get_gallery_ids(
-                            $machine['gallery'] ?? []
+                                $machine['gallery'] ?? []
                         );
                         ?>
 
                         <article
-                            class="
-                                machine-card
-                                grid
-                                grid-cols-1
-                                md:grid-cols-2
-                                gap-4
-                                md:gap-8
-                                items-start
-                            "
+                                class="
+            machine-card
+            relative
+
+
+            after:content-['']
+            after:absolute
+            after:bottom-0
+            after:h-px
+            after:w-[100%]
+            after:bg-[linear-gradient(90deg,#F6EA00_21%,#EEE802_24%,#DBE209_28%,#BBDA14_33%,#8FCE24_39%,#56BE38_46%,#24B14B_51%,#23A949_56%,#229645_64%,#1F753E_73%,#1C4935_84%,#19192B_94%)]
+        "
                         >
 
-                            <?php if (!empty($gallery_ids)) : ?>
+                            <?php if ( ! empty( $gallery_ids ) ) : ?>
 
                                 <div
-                                    class="
-                                        machine-card__gallery
-                                        relative
-                                        overflow-hidden
-                                    "
+                                        class="
+                    ges-slider
+                    relative
+                    
+                "
+                                        data-renderer="translate"
+                                        data-autoplay="0"
+                                        data-loop="true"
+                                        data-pagination="false"
+                                        data-touch="true"
+                                        data-keyboard="true"
                                 >
 
                                     <div
-                                        class="
-                                            machine-card__track
-                                            flex
-                                            overflow-x-auto
-                                            snap-x
-                                            snap-mandatory
-                                        "
+                                            class="
+                        ges-slider__viewport
+                        overflow-hidden
+                    "
                                     >
 
-                                        <?php foreach ($gallery_ids as $image_id) : ?>
-
-                                            <figure
+                                        <div
                                                 class="
-                                                    machine-card__image
-                                                    shrink-0
-                                                    w-full
-                                                    aspect-[4/3]
-                                                    snap-start
-                                                    overflow-hidden
-                                                "
-                                            >
-                                                <?php
-                                                echo wp_get_attachment_image(
-                                                    $image_id,
-                                                    'large',
-                                                    false,
-                                                    [
-                                                        'class' => implode(
-                                                            ' ',
-                                                            [
-                                                                'w-full',
-                                                                'h-full',
-                                                                'object-cover',
-                                                            ]
-                                                        ),
-                                                        'loading' => 'lazy',
-                                                    ]
-                                                );
-                                                ?>
-                                            </figure>
+                            ges-slider__track
+                            flex
+                        "
+                                        >
 
-                                        <?php endforeach; ?>
+                                            <?php foreach ( $gallery_ids as $image_id ) : ?>
+
+                                                <figure
+                                                        class="
+                                    ges-slider__item
+                                    shrink-0
+                                    w-full
+                                    h-[220px]
+                                    md:h-[320px]
+                                    overflow-hidden
+                                "
+                                                >
+
+                                                    <?php
+                                                    echo wp_get_attachment_image(
+                                                            $image_id,
+                                                            'large',
+                                                            false,
+                                                            [
+                                                                    'class' => implode(
+                                                                            ' ',
+                                                                            [
+                                                                                    'block',
+                                                                                    'w-full',
+                                                                                    'h-full',
+                                                                                    'object-cover',
+                                                                            ]
+                                                                    ),
+                                                                    'loading' => 'lazy',
+                                                            ]
+                                                    );
+                                                    ?>
+
+                                                </figure>
+
+                                            <?php endforeach; ?>
+
+                                        </div>
 
                                     </div>
+
+                                    <?php if ( count( $gallery_ids ) > 1 ) : ?>
+
+                                        <button
+                                                type="button"
+                                                class="
+                            ges-slider__prev
+                            absolute
+                            left-2
+                            top-1/2
+                            -translate-y-1/2
+                            z-10
+                            flex
+                            items-center
+                            justify-center
+                            w-10
+                            h-10
+                            rounded-full
+                            bg-white
+                            text-black
+                        "
+                                                data-slider-prev
+                                                aria-label="Anterior"
+                                        >
+
+                                            <svg
+                                                    class="w-3 h-3"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                            >
+                                                <path
+                                                        d="M15 4L7 12L15 20"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                            </svg>
+
+                                        </button>
+
+                                        <button
+                                                type="button"
+                                                class="
+                            ges-slider__next
+                            absolute
+                            right-2
+                            top-1/2
+                            -translate-y-1/2
+                            z-10
+                            flex
+                            items-center
+                            justify-center
+                            w-10
+                            h-10
+                            rounded-full
+                            bg-white
+                            text-black
+                        "
+                                                data-slider-next
+                                                aria-label="Siguiente"
+                                        >
+
+                                            <svg
+                                                    class="w-3 h-3"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                            >
+                                                <path
+                                                        d="M9 4L17 12L9 20"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.5"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                />
+                                            </svg>
+
+                                        </button>
+
+                                    <?php endif; ?>
 
                                 </div>
 
                             <?php endif; ?>
 
+                            <?php if ( ! empty( $machine_title ) ) : ?>
 
-                            <div class="machine-card__content">
-
-                                <?php if (!empty($machine_title)) : ?>
-
-                                    <h3
+                                <h3
                                         class="
-                                            machine-card__title
-                                            text-mobile-h3
-                                            md:text-desktop-h3
-                                            uppercase
-                                            font-thin
-                                            leading-tight
-                                            mb-2
-                                        "
-                                    >
-                                        <?php echo esc_html($machine_title); ?>
-                                    </h3>
+                    text-mobile-h3
+                    md:text-desktop-h3
+                    font-thin
+                    text-white
+                    leading-tight
+                    mb-2
+                "
+                                >
+                                    <?php echo esc_html( $machine_title ); ?>
+                                </h3>
 
-                                <?php endif; ?>
+                            <?php endif; ?>
 
+                            <?php if ( ! empty( $machine_description ) ) : ?>
 
-                                <?php if (!empty($machine_description)) : ?>
-
-                                    <p
+                                <p
                                         class="
-                                            machine-card__description
-                                            text-mobile-p
-                                            md:text-desktop-p
-                                            font-thin
-                                            leading-relaxed
-                                        "
-                                    >
-                                        <?php
-                                        echo nl2br(
+                    text-mobile-p
+                    md:text-desktop-p
+                    font-thin
+                    text-white
+                    leading-relaxed
+                    mb-2
+                "
+                                >
+                                    <?php
+                                    echo nl2br(
                                             esc_html(
-                                                $machine_description
+                                                    $machine_description
                                             )
-                                        );
-                                        ?>
-                                    </p>
+                                    );
+                                    ?>
+                                </p>
 
-                                <?php endif; ?>
-
-                            </div>
+                            <?php endif; ?>
 
                         </article>
 
@@ -950,5 +1231,7 @@ $get_gallery_ids = static function ($gallery): array {
         </section>
 
     <?php endif; ?>
-
+    <section>
+        <img src="<?php echo get_template_directory_uri() ?>/assets/images/ges_verderaro.png" alt="">
+    </section>
 </main>
