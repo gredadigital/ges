@@ -268,48 +268,52 @@ $residuos_items  = carbon_get_the_post_meta( 'ges_impacto_residuos_items' );
 
                         <?php foreach ( $residuos_items as $item ) : ?>
 
-                            <article class="impact-card
-                              flex
-                             flex-col
-                             justify-end
-                             items-center
-                             self-stretch
-                             bg-white
-                              p-3
-                               rounded-2xl
-                             border-2
-                             mb-3
+                            <div class="
+    mb-3
+    rounded-2xl
+    p-[2px]
+    bg-[linear-gradient(270deg,#3E69FF_-6.25%,#4157FD_-1.75%,#4642FA_5%,#4935F9_11.75%,#4A31F9_17.37%,#4937F4_25.25%,#474BE9_35.37%,#436BD6_48.87%,#3F98BC_63.5%,#469CB9_69.13%,#59A7B3_77%,#7ABBAA_86%,#A6D59C_97.25%,#B0DB9A_98.38%)]
+">
 
-                             py-2 mb-2">
+                                <article class="
+        impact-card
+        flex
+        flex-col
+        justify-end
+        items-center
+        self-stretch
+        bg-white
+        rounded-[calc(theme(borderRadius.2xl)-2px)]
+        px-3
+        py-2
+    ">
 
-                                <?php if ( ! empty( $item['icono'] ) ) : ?>
+                                    <?php if ( ! empty( $item['icono'] ) ) : ?>
 
-                                    <figure>
+                                        <figure>
 
-                                        <?php
-                                        echo wp_get_attachment_image(
-                                                $item['icono'],
-                                                'thumbnail'
-                                        );
-                                        ?>
+                                            <?php
+                                            echo wp_get_attachment_image(
+                                                    $item['icono'],
+                                                    'thumbnail'
+                                            );
+                                            ?>
 
-                                    </figure>
+                                        </figure>
 
-                                <?php endif; ?>
+                                    <?php endif; ?>
 
-                                <h3 class="text-mobile-h3 font-thin text-center">
+                                    <h3 class="text-mobile-h3 font-thin text-center">
+                                        <?php echo esc_html( $item['titulo'] ); ?>
+                                    </h3>
 
-                                    <?php echo esc_html( $item['titulo'] ); ?>
+                                    <p class="text-mobile-p font-thin text-center">
+                                        <?php echo esc_html( $item['texto'] ); ?>
+                                    </p>
 
-                                </h3>
+                                </article>
 
-                                <p class="text-mobile-p font-thin text-center">
-
-                                    <?php echo esc_html( $item['texto'] ); ?>
-
-                                </p>
-
-                            </article>
+                            </div>
 
                         <?php endforeach; ?>
 

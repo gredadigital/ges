@@ -80,6 +80,8 @@ Container::make( 'post_meta', __( 'Contenido Contacto', 'ges' ) )
                     'url',
                     __( 'Enlace', 'ges' )
                 ),
+                Field::make( 'image', 'icono', 'Ícono' )
+                    ->set_value_type( 'id' ),
 
             ] ),
 
